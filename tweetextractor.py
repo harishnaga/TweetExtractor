@@ -23,7 +23,7 @@ class StdOutListener(StreamListener):
 
     """
     def on_data(self, data):
-        csvFile = open('heartdisease1.csv', 'a') #creating a csv file were streaming tweets are stored
+        csvFile = open('heartdisease1.csv', 'ab') #creating a csv file were streaming tweets are stored and opening in binary because when u write data into csv file it wont appened tweets leaving empty line between each tweet. 
         csvWriter = csv.writer(csvFile)
         j = json.loads(data) # Loads the json data and creates a dictonary of it
         text = j['text']
