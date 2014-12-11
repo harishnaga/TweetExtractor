@@ -5,6 +5,7 @@ Created on Sun Nov 30 01:07:03 2014
 @author: HARI
 """
 #To get the textblob classifier please goto following link https://textblob.readthedocs.org/en/latest/
+#To get numpy and matpoltlib follow the link given in repository description
 
 from textblob.classifiers import NaiveBayesClassifier #Importing NBC from textbolb classifier
 import numpy as np # importing numpy library as np
@@ -14,33 +15,20 @@ import csv # importing Csv library
 
 
 
-with open('Train2.csv', 'r') as fp:
+with open('filename.csv', 'r') as fp:
     cl = NaiveBayesClassifier(fp, format="csv") #Training the data using naive bayes classifier
     
-with open('Prostatecancer1.csv') as csvfile: # Opening the file which have to be classified 
+with open('filename.csv') as csvfile: # Opening the file which have to be classified 
     csv_f=csv.reader(csvfile, delimiter=' ')
-    f = open('Prostatecancer.txt','a')
-    aw = open('Pcawareness.txt','a')
-#    ad = open('bcadvice.txt','a')
-#    n = open('bcnews.txt','a')
-#    s = open('bcstatistics.txt','a')
-#    q= open('bcquestion.txt','a')
-#    o = open('bcother.txt','a')
-
+    f = open('filename.txt','a')
+    
     for row in csv_f:
         line = ' '.join(row)
         text= ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",line).split()) # regular expression for deleting http link @ # from tweet
-        tlabel=(cl.classify(text))
-        aw.write(str(text+','+' '+tlabel +'\n'))
+        tlabel=(cl.classify(text)
         f.write(str(tlabel+'\n'))
         
-#        if str(tlabel) == 'Awareness':
-#            aw.write(str(text+' '))
-#            aw.write(str(tlabel+'\n'))
-            
-      #count of appearance of labels in the classified data  
-        
-    hl =open('Prostatecancer.txt','r')
+    hl =open('filename.txt','r')
     awcount = 0
     adcount = 0
     ncount = 0
